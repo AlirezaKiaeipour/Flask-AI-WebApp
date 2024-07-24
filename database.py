@@ -5,16 +5,16 @@ from utils.time import relative_time, format_datatime
 from datetime import datetime
 import dotenv
 
-env = dotenv.load_dotenv()
-DATABASE_USER = os.getenv("DATABASE_USER")
-DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
-DATABASE_HOST = os.getenv("DATABASE_HOST")
-DATABASE_NAME = os.getenv("DATABASE_NAME")
+# env = dotenv.load_dotenv()
+# DATABASE_USER = os.getenv("DATABASE_USER")
+# DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
+# DATABASE_HOST = os.getenv("DATABASE_HOST")
+# DATABASE_NAME = os.getenv("DATABASE_NAME")
 
-DATABASE_URL = (
-    f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}/{DATABASE_NAME}"
-)
-# DATABASE_URL = "sqlite:///database.db"
+# DATABASE_URL = (
+#     f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}/{DATABASE_NAME}"
+# )
+DATABASE_URL = "sqlite:///database.db"
 engine = create_engine(DATABASE_URL, echo=True)
 SQLModel.metadata.create_all(engine)
 

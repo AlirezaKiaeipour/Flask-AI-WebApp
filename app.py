@@ -97,7 +97,7 @@ def login():
                             hashed_password = encrypt_hash_password(register_data.password)
                             if register_data.username:
                                 if register_data.email:
-                                    email_pattern = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}$"
+                                    email_pattern = "^[A-Za-z0-9._%+-]"
                                     if check_valid(email_pattern, register_data.email):
                                         if database.check_user(username=register_data.username, email=register_data.email):
                                             database.insert_user(first_name = register_data.first_name,
