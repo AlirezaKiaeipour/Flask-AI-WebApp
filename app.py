@@ -12,6 +12,7 @@ import numpy as np
 from PIL import Image
 from flask import Flask, render_template, request, redirect, url_for, make_response, session, flash
 import bcrypt
+import config
 
 
 env = dotenv.load_dotenv()
@@ -22,8 +23,11 @@ app.config["UPLOAD_FOLDER"] = "./uploads"
 app.config["ALLOWED_EXTENSIONS"] = {"jpg", "jpeg", "png"}
 salt = bcrypt.gensalt()
 
-face_analysis = FaceAnalysis("models/det_10g.onnx", "models/genderage.onnx")
-object_detector = YOLOv8("models/yolov8n.onnx")
+face_analysis = FaceAnalysis(
+    config.face_detection_onnx_model_path, config.age_gender_estimation_onnx_model_path
+)
+object_detector = YOLOv8(config.object_detection_onnx_model_path)
+
 
 def check_valid(pattern,text):
     if re.match(pattern,text):
@@ -457,3 +461,7 @@ def admin_setting_change():
         user = database.update_role(user, email)
         if user is not None:
             return render_template("admin_setting_change.html")
+        
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
