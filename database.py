@@ -1,20 +1,17 @@
-import os
 from sqlmodel import Session, SQLModel, create_engine, select
 from models import User, Comment, Blog
 from utils.time import relative_time, format_datatime
 from datetime import datetime
-import dotenv
 
-# env = dotenv.load_dotenv()
-# DATABASE_USER = os.getenv("DATABASE_USER")
-# DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
-# DATABASE_HOST = os.getenv("DATABASE_HOST")
-# DATABASE_NAME = os.getenv("DATABASE_NAME")
+DATABASE_HOST="ep-twilight-block-a2kh33i9.eu-central-1.pg.koyeb.app"
+DATABASE_USER="koyeb-adm"
+DATABASE_PASSWORD="8FOMabfA0ywx"
+DATABASE_NAME="koyebdb"
 
-# DATABASE_URL = (
-#     f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}/{DATABASE_NAME}"
-# )
-DATABASE_URL = "sqlite:///database.db"
+DATABASE_URL = (
+    f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}/{DATABASE_NAME}"
+)
+# DATABASE_URL = "sqlite:///database.db"
 engine = create_engine(DATABASE_URL, echo=True)
 SQLModel.metadata.create_all(engine)
 

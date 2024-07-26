@@ -2,7 +2,7 @@ FROM python
 
 WORKDIR /myapp
 
-# COPY . /myapp
+COPY . /myapp
 
 # Upgrade pip and install requirements
 COPY requirements.txt /myapp
