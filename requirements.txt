@@ -1,11 +1,11 @@
 flask
-python-dotenv
-bcrypt
 sqlmodel
-pillow
+bcrypt
 numpy
+pillow
 opencv-python-headless
-onnxruntime
+scikit-image
 pyyaml
 psycopg2
-scikit-image
+onnxruntime
+python-dotenv

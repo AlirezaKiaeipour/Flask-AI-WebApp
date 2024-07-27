@@ -12,7 +12,6 @@ import numpy as np
 from PIL import Image
 from flask import Flask, render_template, request, redirect, url_for, make_response, session, flash
 import bcrypt
-import config
 
 
 env = dotenv.load_dotenv()
@@ -23,10 +22,8 @@ app.config["UPLOAD_FOLDER"] = "./uploads"
 app.config["ALLOWED_EXTENSIONS"] = {"jpg", "jpeg", "png"}
 salt = bcrypt.gensalt()
 
-face_analysis = FaceAnalysis(
-    config.face_detection_onnx_model_path, config.age_gender_estimation_onnx_model_path
-)
-object_detector = YOLOv8(config.object_detection_onnx_model_path)
+face_analysis = FaceAnalysis("models/det_10g.onnx", "models/genderage.onnx")
+object_detector = YOLOv8("models/yolov8n.onnx")
 
 
 def check_valid(pattern,text):
